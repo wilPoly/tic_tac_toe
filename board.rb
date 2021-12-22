@@ -12,7 +12,7 @@ class Board
   def draw_board
     @board.each do |rows|
       rows.each do
-        print "|__|"
+        print '|__|'
       end
       print "\n"
       puts '------'
@@ -20,5 +20,5 @@ class Board
   end
 end
 
-board = Board.new(3, 3)
-board.draw_board
+# board = Board.new(3, 3)
+# board.draw_board

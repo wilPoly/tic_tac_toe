@@ -2,8 +2,8 @@
 
 # Defines player object
 class Player
-  attr_reader :mark
-  attr_accessor :name, :turn, :score
+  attr_reader :mark, :name
+  attr_accessor :turn, :score
 
   def initialize(mark, name, turn, score)
     @mark = mark
