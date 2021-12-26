@@ -3,19 +3,22 @@
 # Board of the game
 class Board
   def initialize(rows, columns)
-    @board = Array.new(rows) { Array.new(columns) }
+    @board = [Array.new(rows) { Array.new(columns) }]
+    @symbols = []
   end
 
   def state?; end
 
   # work in progress
   def draw_board
-    @board.each do |rows|
-      rows.each do
-        print '|__|'
-      end
-      print "\n"
-      puts '------'
+    # draw the board with the board content.
+    # if a cell == nil add a number
+  end
+
+  def add_symbol(symbol)
+    @symbols << symbol
+    @symbols.each do |symbol|
+      @board.at(symbol.position) = symbol.mark
     end
   end
 end

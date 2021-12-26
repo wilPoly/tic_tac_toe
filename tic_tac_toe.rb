@@ -30,6 +30,9 @@ class Game
     create_players
     create_board
   end
+
+  def round; end
+  
 end
 
 Game.new
