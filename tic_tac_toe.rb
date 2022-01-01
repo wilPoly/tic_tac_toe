@@ -9,17 +9,16 @@ class Game
   attr_accessor :player1, :player2, :board
 
   def initialize
+    puts 'TIC TAC TOE'
     new_game
   end
 
-  def create_players
-    puts 'TIC TAC TOE'
-    puts 'What is your name player 1?'
-    player1_name = gets.chomp
-    @player1 = Player.new('X', player1_name, 0, 0)
-    puts 'What is your name player 2?'
-    player2_name = gets.chomp
-    @player2 = Player.new('O', player2_name, 0, 0)
+  def create_player(number, mark)
+    puts "What is your name player #{number}?"
+    name = gets.chomp
+    puts "Hello #{name}, your mark is #{mark}"
+    puts "\n"
+    Player.new(mark, name)
   end
 
   def create_board
@@ -27,9 +26,12 @@ class Game
   end
 
   def new_game
-    create_players
+    @player1 = create_player(1, 'X')
+    @player2 = create_player(2, 'O')
     create_board
   end
+
+  def round; end
 end
 
 Game.new

@@ -5,7 +5,7 @@ class Player
   attr_reader :mark, :name
   attr_accessor :turn, :score
 
-  def initialize(mark, name, turn, score)
+  def initialize(mark, name, turn = 0, score = 0)
     @mark = mark
     @name = name
     @turn = turn
