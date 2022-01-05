@@ -3,33 +3,31 @@
 # Board of the game
 class Board
   def initialize(rows, columns)
-    @board = Array.new(rows) { Array.new(columns) }
+    cell_number = 0
+    # initialize board with number from 1 to rows*columns
+    @board = Array.new(rows) do
+      Array.new(columns) do
+        cell_number += 1
+      end
+    end
     @symbols = []
   end
 
-  def state?; end
-
   def add_symbol(symbol)
     @symbols << symbol
-    @symbols.each do |symbol|
-      @board.at(symbol.position) = symbol.mark
-    end
+    # @symbols.each do |symbol|
+    #   @board.at(symbol.position) = symbol.mark
+    # end
   end
 
-  # work in progress
-  # draw the board with the board content
-  # if a celle == nil => add a number
-  # -------
-  # def draw_board
-  #   @board.each do |rows|
-  #     rows.each do
-  #       print '|__|'
-  #     end
-  #     print "\n"
-  #     puts '------'
-  #   end
-  # end
-  # ------
+  def draw_board
+    @board.each do |row|
+      row.each do |cell|
+        print "|#{cell}"
+      end
+      puts "|\n"
+    end
+  end
 end
 
 # board = Board.new(3, 3)
