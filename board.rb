@@ -14,11 +14,15 @@ class Board
   end
 
   def add_mark(mark)
+    @board.each_with_index do |row, i|
+      row.each_index do |j|
+        @board[i][j] = mark.type if @board[i][j] == mark.position
+      end
+    end
     @marks << mark
-    # @symbols.each do |symbol|
-    #   @board.at(symbol.position) = symbol.mark
-    # end
   end
+
+  def convert_mark_position(mark); end
 
   def draw_board
     @board.each do |row|
@@ -29,6 +33,3 @@ class Board
     end
   end
 end
-
-# board = Board.new(3, 3)
-# board.draw_board

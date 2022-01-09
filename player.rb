@@ -20,6 +20,4 @@ class Player
   def win
     @score += 1
   end
-
-  def lose; end
 end

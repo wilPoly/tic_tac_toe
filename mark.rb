@@ -9,6 +9,3 @@ class Mark
     @position = position
   end
 end
-
-new_mark = Mark.new('X', 1)
-p new_mark

@@ -38,15 +38,18 @@ class Game
   end
 
   def round
-    active_player = nil
-    @players.each do |player|
-      active_player = player if player.turn
-    end
+    active_player = @players.filter(player.turn)
     puts "Your turn, #{active_player.name}.\n" \
         'Choose a position for your mark.'
     @board.draw_board
     position = gets.chomp.to_i
     active_player.choose_position(@board, position)
+    @board.draw_board
+    end_turn(@players)
+  end
+
+  def end_turn(players)
+    players.each { |player| player.turn = player.turn ? false : true }
   end
 end
 
