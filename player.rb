@@ -5,16 +5,16 @@ class Player
   attr_reader :mark, :name
   attr_accessor :turn, :score
 
-  def initialize(mark, name, turn: false, score: 0)
-    @mark = mark
+  def initialize(mark_type, name, turn: false, score: 0)
+    @mark_type = mark_type
     @name = name
     @turn = turn
     @score = score
   end
 
   def choose_position(board, number)
-    symbol = Symbol.new(@mark, number)
-    board.add_symbol(symbol)
+    new_mark = Mark.new(@mark_type, number)
+    board.add_mark(new_mark)
   end
 
   def win

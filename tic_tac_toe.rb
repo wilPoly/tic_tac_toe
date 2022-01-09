@@ -2,7 +2,7 @@
 
 require_relative './board'
 require_relative './player'
-require_relative './symbol'
+require_relative './mark'
 require 'pry-byebug'
 
 # Defines the game engine

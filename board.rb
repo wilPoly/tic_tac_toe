@@ -10,11 +10,11 @@ class Board
         cell_number += 1
       end
     end
-    @symbols = []
+    @marks = []
   end
 
-  def add_symbol(symbol)
-    @symbols << symbol
+  def add_mark(mark)
+    @marks << mark
     # @symbols.each do |symbol|
     #   @board.at(symbol.position) = symbol.mark
     # end
