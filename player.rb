@@ -2,7 +2,7 @@
 
 # Defines player object
 class Player
-  attr_reader :mark, :name
+  attr_reader :mark_type, :name
   attr_accessor :turn, :score
 
   def initialize(mark_type, name, turn: false, score: 0)

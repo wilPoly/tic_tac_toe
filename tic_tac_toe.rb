@@ -34,22 +34,42 @@ class Game
     @player2 = create_player(2, 'O', turn: false)
     @players << @player2
     create_board
-    round # until @end_game
+    round until @end_game
   end
 
   def round
-    active_player = @players.filter(player.turn)
-    puts "Your turn, #{active_player.name}.\n" \
-        'Choose a position for your mark.'
+    active_player = start_turn(@players)
+    p active_player
+    puts "Your turn, #{active_player.name}.\n"
     @board.draw_board
-    position = gets.chomp.to_i
+    position = @board.check_position
     active_player.choose_position(@board, position)
     @board.draw_board
+    binding.pry
+    win(active_player) if @board.win?(active_player)
     end_turn(@players)
+  end
+
+  def start_turn(players)
+    active_player = nil
+    players.each { |player| active_player = player if player.turn }
+    active_player
   end
 
   def end_turn(players)
     players.each { |player| player.turn = player.turn ? false : true }
+  end
+
+  def win(player)
+    puts "#{player.name} wins !"
+    @board.draw_board
+    player.score += 1
+    display_score
+    @end_game = true
+  end
+
+  def display_score
+    @players.each { |player| puts "#{player.name}'s score: #{player.score}\n" }
   end
 end
 
