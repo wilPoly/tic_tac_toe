@@ -12,8 +12,11 @@ class Game
   def initialize
     puts 'TIC TAC TOE'
     @players = []
+    @player1 = create_player(1, 'X', turn: true)
+    @players << @player1
+    @player2 = create_player(2, 'O', turn: false)
+    @players << @player2
     new_game
-    @end_game = false
   end
 
   def create_player(number, mark, turn)
@@ -28,24 +31,25 @@ class Game
     @board = Board.new(3, 3)
   end
 
+  def clear_marks
+    @players.each(&:clear_marks)
+  end
+
   def new_game
-    @player1 = create_player(1, 'X', turn: true)
-    @players << @player1
-    @player2 = create_player(2, 'O', turn: false)
-    @players << @player2
+    @game_end = false
     create_board
-    round until @end_game
+    clear_marks
+    round until @game_end
+    end_game
   end
 
   def round
     active_player = start_turn(@players)
-    p active_player
     puts "Your turn, #{active_player.name}.\n"
     @board.draw_board
     position = @board.check_position
     active_player.choose_position(@board, position)
     @board.draw_board
-    binding.pry
     win(active_player) if @board.win?(active_player)
     end_turn(@players)
   end
@@ -65,11 +69,21 @@ class Game
     @board.draw_board
     player.score += 1
     display_score
-    @end_game = true
+    @game_end = true
   end
 
   def display_score
     @players.each { |player| puts "#{player.name}'s score: #{player.score}\n" }
+  end
+
+  def end_game
+    puts 'Would you like to play again'
+    answer = gets.chomp.downcase
+    if answer.include?('y')
+      new_game
+    else
+      exit(0)
+    end
   end
 end
 

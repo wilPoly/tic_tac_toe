@@ -10,7 +10,10 @@ class Board
         cell_number += 1
       end
     end
-    @marks = []
+    @win_condition =
+      { diagonal1: [1, 5, 9], diagonal2: [3, 5, 7],
+        row1: [1, 2, 3], row2: [4, 5, 6], row3: [7, 8, 9],
+        column1: [1, 4, 7], column2: [2, 5, 8], column3: [3, 6, 9] }
   end
 
   def check_position
@@ -32,7 +35,6 @@ class Board
         @board[i][j] = mark.type if @board[i][j] == mark.position
       end
     end
-    @marks << mark
   end
 
   def draw_board
@@ -46,17 +48,8 @@ class Board
 
   def win?(player)
     win = false
-    win_condition =
-      { diagonal1: [@board[0][0], @board[1][1], @board[2][2]],
-        diagonal2: [@board[0][2], @board[1][1], @board[2][0]],
-        row1: [@board[0][0], @board[0][1], @board[0][2]],
-        row2: [@board[1][0], @board[1][1], @board[1][2]],
-        row3: [@board[2][0], @board[2][1], @board[2][2]],
-        column1: [@board[0][0], @board[1][0], @board[2][0]],
-        column2: [@board[0][1], @board[1][1], @board[2][1]],
-        column3: [@board[0][2], @board[1][2], @board[2][2]] }
-    win_condition.each do |_k, v|
-      if v.all? { |i| i == player.mark_type }
+    @win_condition.each do |_k, v|
+      if player.marks_positions.filter { |i| v.include?(i) } == v
         win = true
         break
       end
