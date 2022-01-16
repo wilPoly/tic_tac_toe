@@ -29,6 +29,7 @@ class Game
 
   def create_board
     @board = Board.new(3, 3)
+    p @board
   end
 
   def clear_marks
