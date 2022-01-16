@@ -38,12 +38,14 @@ class Board
   end
 
   def draw_board
+    puts "\n"
     @board.each do |row|
       row.each do |cell|
         print "|#{cell}"
       end
       puts "|\n"
     end
+    puts "\n"
   end
 
   def win?(player)

@@ -12,10 +12,8 @@ class Game
   def initialize
     puts 'TIC TAC TOE'
     @players = []
-    @player1 = create_player(1, 'X', turn: true)
-    @players << @player1
-    @player2 = create_player(2, 'O', turn: false)
-    @players << @player2
+    create_player(1, 'X', turn: true)
+    create_player(2, 'O', turn: false)
     new_game
   end
 
@@ -24,12 +22,12 @@ class Game
     name = gets.chomp
     puts "Hello #{name}, your mark is #{mark}"
     puts "\n"
-    Player.new(mark, name, turn)
+    player = Player.new(mark, name, turn)
+    @players << player
   end
 
   def create_board
     @board = Board.new(3, 3)
-    p @board
   end
 
   def clear_marks
@@ -56,9 +54,7 @@ class Game
   end
 
   def start_turn(players)
-    active_player = nil
-    players.each { |player| active_player = player if player.turn }
-    active_player
+    players.each { |player| return player if player.turn }
   end
 
   def end_turn(players)

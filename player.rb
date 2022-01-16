@@ -25,6 +25,5 @@ class Player
 
   def clear_marks
     @marks.clear
-    puts "#{self.name} : #{@marks}"
   end
 end
